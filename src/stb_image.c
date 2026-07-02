@@ -1,9 +1,11 @@
 #define STB_IMAGE_IMPLEMENTATION
-#define STBI_NO_STDIO
 #define STBI_NO_FAILURE_STRINGS
 #define STBI_NO_THREAD_LOCALS
 
 #include "stb_image.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 stbi_uc *stbi_load_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp) {
     (void)buffer; (void)len; (void)x; (void)y; (void)comp; (void)req_comp;
@@ -15,7 +17,6 @@ stbi_uc *stbi_load_from_callbacks(stbi_io_callbacks const *clbk, void *user, int
     return NULL;
 }
 
-#ifndef STBI_NO_STDIO
 int stbi_info(char const *filename, int *x, int *y, int *comp) {
     (void)filename; (void)x; (void)y; (void)comp;
     return 0;
@@ -35,7 +36,6 @@ stbi_uc *stbi_load_from_file(FILE *f, int *x, int *y, int *comp, int req_comp) {
     (void)f; (void)x; (void)y; (void)comp; (void)req_comp;
     return NULL;
 }
-#endif
 
 int stbi_info_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp) {
     (void)buffer; (void)len; (void)x; (void)y; (void)comp;
@@ -61,7 +61,6 @@ int stbi_is_hdr_from_callbacks(stbi_io_callbacks const *clbk, void *user) {
     return 0;
 }
 
-#ifndef STBI_NO_STDIO
 int stbi_is_hdr(char const *filename) {
     (void)filename;
     return 0;
@@ -71,7 +70,6 @@ int stbi_is_hdr_from_file(FILE *f) {
     (void)f;
     return 0;
 }
-#endif
 
 const char *stbi_failure_reason(void) {
     return "stb_image not fully implemented - stub only";
