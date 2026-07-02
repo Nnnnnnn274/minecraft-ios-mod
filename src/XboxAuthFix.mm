@@ -61,11 +61,11 @@ static CFTypeRef replacement_SecItemAdd(CFDictionaryRef attributes, CFTypeRef *r
         if (data) {
             saveToLocalStorage(query, data);
             if (result) *result = NULL;
-            return errSecSuccess;
+            return NULL;
         }
     }
     if (original_SecItemAdd) return original_SecItemAdd(attributes, result);
-    return errSecParam;
+    return NULL;
 }
 
 static OSStatus replacement_SecItemCopyMatching(CFDictionaryRef query, CFTypeRef *result) {
