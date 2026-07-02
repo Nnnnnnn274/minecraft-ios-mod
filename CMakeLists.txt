@@ -24,7 +24,7 @@ set(SOURCES
     src/ClientUIManager.cpp
     src/OffsetConfig.cpp
     src/fishhook.c
-    src/XboxAuthFix.cpp
+    src/XboxAuthFix.mm
     src/api/Paperweight.cpp
     src/api/Hardweight.cpp
     src/api/APIScreen.mm

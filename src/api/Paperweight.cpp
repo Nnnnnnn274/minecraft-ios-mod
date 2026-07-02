@@ -10,6 +10,8 @@
 
 namespace Paperweight {
 
+struct BlockPos { int x, y, z; };
+
 static std::mutex g_mutex;
 static std::unordered_map<std::string, std::function<void(const std::string&)>> g_commands;
 static std::function<void(const std::string&, const std::string&)> g_chatCallback;
