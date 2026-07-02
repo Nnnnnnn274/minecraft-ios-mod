@@ -25,10 +25,10 @@ extern "C" {
 #endif
 
 extern int      stbi_info_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp);
-extern int      stbi_info_from_callbacks(void *clbk, void *user, int *x, int *y, int *comp);
+extern int      stbi_info_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp);
 
 extern stbi_uc *stbi_load_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp);
-extern stbi_uc *stbi_load_from_callbacks(void *clbk, void *user, int *x, int *y, int *comp, int req_comp);
+extern stbi_uc *stbi_load_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp);
 
 #ifndef STBI_NO_STDIO
 extern int      stbi_info(char const *filename, int *x, int *y, int *comp);
@@ -40,14 +40,14 @@ extern stbi_uc *stbi_load_from_file(FILE *f, int *x, int *y, int *comp, int req_
 extern void     stbi_image_free(void *retval_from_stbi_load);
 
 extern int      stbi_is_hdr_from_memory(stbi_uc const *buffer, int len);
-extern int      stbi_is_hdr_from_callbacks(void *clbk, void *user);
+extern int      stbi_is_hdr_from_callbacks(stbi_io_callbacks const *clbk, void *user);
 #ifndef STBI_NO_STDIO
 extern int      stbi_is_hdr(char const *filename);
 extern int      stbi_is_hdr_from_file(FILE *f);
 #endif
 
 extern float   *stbi_loadf_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp);
-extern float   *stbi_loadf_from_callbacks(void *clbk, void *user, int *x, int *y, int *comp, int req_comp);
+extern float   *stbi_loadf_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp);
 #ifndef STBI_NO_STDIO
 extern float   *stbi_loadf(char const *filename, int *x, int *y, int *comp, int req_comp);
 extern float   *stbi_loadf_from_file(FILE *f, int *x, int *y, int *comp, int req_comp);
