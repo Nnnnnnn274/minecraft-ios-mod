@@ -13,6 +13,13 @@
 typedef uint8_t stbi_uc;
 typedef uint16_t stbi_us;
 
+typedef struct
+{
+   int (*read)  (void *user,char *data,int size);
+   void (*skip) (void *user,int n);
+   int (*eof)   (void *user);
+} stbi_io_callbacks;
+
 #ifdef __cplusplus
 extern "C" {
 #endif
