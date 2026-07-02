@@ -1,0 +1,57 @@
+name: Build Minecraft Client Loader
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+  workflow_dispatch:
+
+jobs:
+  build-ios-dylib:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Xcode
+        run: |
+          sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+          xcodebuild -version
+
+      - name: Install CMake
+        run: |
+          brew install cmake
+          cmake --version
+
+      - name: Configure CMake for iOS
+        run: |
+          cmake -B build \
+            -DCMAKE_SYSTEM_NAME=iOS \
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 \
+            -DCMAKE_OSX_ARCHITECTURES=arm64 \
+            -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=NO \
+            -DCMAKE_SYSTEM_PROCESSOR=arm64 \
+            -G "Unix Makefiles" \
+            -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: |
+          cmake --build build --target MinecraftClientLoader -- -j$(sysctl -n hw.logicalcpu)
+
+      - name: Verify output
+        run: |
+          ls -lh build/libMinecraftClientLoader.dylib
+          file build/libMinecraftClientLoader.dylib
+
+      - name: Upload .dylib
+        uses: actions/upload-artifact@v4
+        with:
+          name: MinecraftClientLoader-iOS
+          path: |
+            build/libMinecraftClientLoader.dylib
+            scripts/find_offsets.py
+          compression-level: 9
+          retention-days: 30
