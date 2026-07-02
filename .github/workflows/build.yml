@@ -43,15 +43,15 @@ jobs:
 
       - name: Verify output
         run: |
-          ls -lh build/libMinecraftClientLoader.dylib
-          file build/libMinecraftClientLoader.dylib
+          ls -lh build/MinecraftClientLoader.dylib
+          file build/MinecraftClientLoader.dylib
 
       - name: Upload .dylib
         uses: actions/upload-artifact@v4
         with:
           name: MinecraftClientLoader-iOS
           path: |
-            build/libMinecraftClientLoader.dylib
+            build/MinecraftClientLoader.dylib
             scripts/find_offsets.py
           compression-level: 9
           retention-days: 30
