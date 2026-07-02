@@ -100,7 +100,7 @@ static std::vector<void*> g_activeHooks;
 
 void* Hook::create(void* target, void* replacement, void** original) {
     void* orig = nullptr;
-    rebind_symbols_image((const struct mach_header_64*)_dyld_get_image_header(0),
+    rebind_symbols_image((void*)_dyld_get_image_header(0),
                          _dyld_get_image_vmaddr_slide(0),
                          (struct rebinding[1]){{"", (void*)target, &orig}},
                          1);
