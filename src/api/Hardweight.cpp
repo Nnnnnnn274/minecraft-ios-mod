@@ -70,7 +70,6 @@ void Memory::writeBytes(uintptr_t addr, const void* buf, size_t len) {
     memcpy((void*)addr, buf, len);
     vm_protect(mach_task_self(), (vm_address_t)addr, len, 0,
                VM_PROT_READ | VM_PROT_EXECUTE);
-    __builtin___clear_cache((char*)addr, (char*)addr + len);
 }
 
 uintptr_t Memory::scanPattern(const char* pattern, const char* mask) {

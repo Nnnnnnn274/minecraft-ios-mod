@@ -114,3 +114,18 @@ int rebind_symbols(struct rebinding rebindings[], size_t rebindings_nel) {
     _dyld_register_func_for_add_image(_rebind_symbols_for_image);
     return 0;
 }
+
+int rebind_symbols_image(void *header, intptr_t slide, struct rebinding rebindings[], size_t rebindings_nel) {
+    struct rebindings_entry *entry = malloc(sizeof(struct rebindings_entry));
+    entry->rebindings = malloc(sizeof(struct rebinding) * rebindings_nel);
+    memcpy(entry->rebindings, rebindings, sizeof(struct rebinding) * rebindings_nel);
+    entry->rebindings_nel = rebindings_nel;
+    entry->next = NULL;
+    struct rebindings_entry *old = _rebindings_head;
+    _rebindings_head = entry;
+    rebind_symbols_for_image((const struct mach_header *)header, slide);
+    _rebindings_head = old;
+    free(entry->rebindings);
+    free(entry);
+    return 0;
+}
