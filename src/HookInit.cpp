@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <mach-o/dyld.h>
+#include <mach/mach.h>
 #include <mach/vm_map.h>
 #include <dlfcn.h>
 

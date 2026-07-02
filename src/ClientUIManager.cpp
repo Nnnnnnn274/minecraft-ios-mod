@@ -1,3 +1,4 @@
+#define GLES_SILENCE_DEPRECATION
 /*
  *  ClientUIManager.cpp — Minecraft Client Loader
  *  ===============================================
