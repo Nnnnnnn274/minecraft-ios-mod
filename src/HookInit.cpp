@@ -8,6 +8,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <dlfcn.h>
+#include <mach/mach.h>
 #include <libkern/OSCacheControl.h>
 
 static bool g_hooksInitialized = false;
