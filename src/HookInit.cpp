@@ -8,7 +8,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <sys/cache.h>
+#include <libkern/OSCacheControl.h>
 
 static bool g_hooksInitialized = false;
 static bool g_cppHooksActive = false;
@@ -41,7 +41,7 @@ static bool tryResolveCppHook(void) {
 
     kr = vm_protect(mach_task_self(), (vm_address_t)target, 16, 0,
                     VM_PROT_READ | VM_PROT_EXECUTE);
-    sys_icache_invalidate((void*)target, 16);
+    sys_icache_invalidate(target, 16);
     g_originalTick = (ServerNetworkHandler_tick_t)target;
     return true;
 }

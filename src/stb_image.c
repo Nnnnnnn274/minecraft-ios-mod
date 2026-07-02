@@ -1,66 +1,98 @@
 #define STB_IMAGE_IMPLEMENTATION
 #define STBI_NO_STDIO
+#define STBI_NO_FAILURE_STRINGS
+#define STBI_NO_THREAD_LOCALS
+
 #include "stb_image.h"
-#include <stdlib.h>
-#include <string.h>
 
-STBIDEF int stbi_info_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp) {
-    return 0;
-}
-
-STBIDEF int stbi_info_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp) {
-    return 0;
-}
-
-STBIDEF stbi_uc *stbi_load_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp) {
+stbi_uc *stbi_load_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp) {
+    (void)buffer; (void)len; (void)x; (void)y; (void)comp; (void)req_comp;
     return NULL;
 }
 
-STBIDEF stbi_uc *stbi_load_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp) {
+stbi_uc *stbi_load_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp) {
+    (void)clbk; (void)user; (void)x; (void)y; (void)comp; (void)req_comp;
     return NULL;
 }
 
 #ifndef STBI_NO_STDIO
-STBIDEF int stbi_info(char const *filename, int *x, int *y, int *comp) {
+int stbi_info(char const *filename, int *x, int *y, int *comp) {
+    (void)filename; (void)x; (void)y; (void)comp;
     return 0;
 }
 
-STBIDEF int stbi_info_from_file(FILE *f, int *x, int *y, int *comp) {
+int stbi_info_from_file(FILE *f, int *x, int *y, int *comp) {
+    (void)f; (void)x; (void)y; (void)comp;
     return 0;
 }
 
-STBIDEF stbi_uc *stbi_load(char const *filename, int *x, int *y, int *comp, int req_comp) {
+stbi_uc *stbi_load(char const *filename, int *x, int *y, int *comp, int req_comp) {
+    (void)filename; (void)x; (void)y; (void)comp; (void)req_comp;
     return NULL;
 }
 
-STBIDEF stbi_uc *stbi_load_from_file(FILE *f, int *x, int *y, int *comp, int req_comp) {
+stbi_uc *stbi_load_from_file(FILE *f, int *x, int *y, int *comp, int req_comp) {
+    (void)f; (void)x; (void)y; (void)comp; (void)req_comp;
     return NULL;
 }
 #endif
 
-STBIDEF void stbi_image_free(void *retval_from_stbi_load) {
-    free(retval_from_stbi_load);
+int stbi_info_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp) {
+    (void)buffer; (void)len; (void)x; (void)y; (void)comp;
+    return 0;
 }
 
-STBIDEF void stbi_set_unpremultiply_on_load(int flag_true_if_should_unpremultiply) {}
-STBIDEF void stbi_convert_iphone_png_to_rgb(int flag_true_if_should_convert) {}
-STBIDEF void stbi_set_flip_vertically_on_load(int flag_true_if_should_flip) {}
-STBIDEF void stbi_set_unpremultiply_on_load_thread(int flag_true_if_should_unpremultiply) {}
-STBIDEF int stbi_is_hdr_from_memory(stbi_uc const *buffer, int len) { return 0; }
-STBIDEF int stbi_is_hdr_from_callbacks(stbi_io_callbacks const *clbk, void *user) { return 0; }
-#ifndef STBI_NO_STDIO
-STBIDEF int stbi_is_hdr(char const *filename) { return 0; }
-STBIDEF int stbi_is_hdr_from_file(FILE *f) { return 0; }
-#endif
-STBIDEF float *stbi_loadf_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp, int req_comp) { return NULL; }
-STBIDEF float *stbi_loadf_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp, int req_comp) { return NULL; }
-#ifndef STBI_NO_STDIO
-STBIDEF float *stbi_loadf(char const *filename, int *x, int *y, int *comp, int req_comp) { return NULL; }
-STBIDEF float *stbi_loadf_from_file(FILE *f, int *x, int *y, int *comp, int req_comp) { return NULL; }
-#endif
-STBIDEF void stbi_hdr_to_ldr_gamma(float gamma) {}
-STBIDEF void stbi_ldr_to_hdr_scale(float scale) {}
+int stbi_info_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp) {
+    (void)clbk; (void)user; (void)x; (void)y; (void)comp;
+    return 0;
+}
 
-STBIDEF int stbi_info(char const *filename, int *x, int *y, int *comp) { return 0; }
-STBIDEF int stbi_info_from_memory(stbi_uc const *buffer, int len, int *x, int *y, int *comp) { return 0; }
-STBIDEF int stbi_info_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *comp) { return 0; }
+void stbi_image_free(void *retval_from_stbi_load) {
+    (void)retval_from_stbi_load;
+}
+
+int stbi_is_hdr_from_memory(stbi_uc const *buffer, int len) {
+    (void)buffer; (void)len;
+    return 0;
+}
+
+int stbi_is_hdr_from_callbacks(stbi_io_callbacks const *clbk, void *user) {
+    (void)clbk; (void)user;
+    return 0;
+}
+
+#ifndef STBI_NO_STDIO
+int stbi_is_hdr(char const *filename) {
+    (void)filename;
+    return 0;
+}
+
+int stbi_is_hdr_from_file(FILE *f) {
+    (void)f;
+    return 0;
+}
+#endif
+
+const char *stbi_failure_reason(void) {
+    return "stb_image not fully implemented - stub only";
+}
+
+int stbi_write_png(char const *filename, int w, int h, int comp, const void *data, int stride_in_bytes) {
+    (void)filename; (void)w; (void)h; (void)comp; (void)data; (void)stride_in_bytes;
+    return 0;
+}
+
+int stbi_write_bmp(char const *filename, int w, int h, int comp, const void *data) {
+    (void)filename; (void)w; (void)h; (void)comp; (void)data;
+    return 0;
+}
+
+int stbi_write_tga(char const *filename, int w, int h, int comp, const void *data) {
+    (void)filename; (void)w; (void)h; (void)comp; (void)data;
+    return 0;
+}
+
+int stbi_write_hdr(char const *filename, int w, int h, int comp, const void *data) {
+    (void)filename; (void)w; (void)h; (void)comp; (void)data;
+    return 0;
+}
